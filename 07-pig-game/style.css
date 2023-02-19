@@ -1,105 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
-button {
-  border: none;
-  background-color: rgba(255, 255, 255, 0.716);
-  padding: 5px 20px;
-  font-size: 25px;
-  border-radius: 50px;
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
-  width: 100vw;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
   height: 100vh;
+  color: #333;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
-
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.message.active {
+  display: block;
+}
+
+.message {
+  display: none;
+  z-index: 9;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 80px;
+  padding: 10px 30px;
+  white-space: nowrap;
+
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+
+  border-radius: 10px;
+}
+.message > span {
+  color: #bf2e34;
+}
+
+/* LAYOUT */
 main {
-  margin: auto;
-  width: 1000px;
-  height: 700px;
-
   position: relative;
-  display: flex;
-
+  width: 100rem;
+  height: 60rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(200px);
+  filter: blur();
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.35);
+  display: flex;
 }
-section {
-  flex: 1;
 
+.player {
+  flex: 50%;
+  padding: 9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.75s;
+}
 
-  padding-block: 100px;
-}
-.player--active {
-  background-color: rgba(255, 255, 255, 0.4);
-}
+/* ELEMENTS */
 .name {
-  margin-bottom: 40px;
+  position: relative;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  font-weight: 300;
+  margin-bottom: 1rem;
 }
+
 .score {
-  font-size: 50px;
-  font-weight: 900;
+  font-size: 8rem;
+  font-weight: 300;
   color: #c7365f;
   margin-bottom: auto;
 }
+
+.player--active {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.player--active .name {
+  font-weight: 700;
+}
+.player--active .score {
+  font-weight: 400;
+}
+
+.player--active .current {
+  opacity: 1;
+}
+
 .current {
   background-color: #c7365f;
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
   width: 65%;
-  padding: 10px;
+  padding: 2rem;
   text-align: center;
   transition: all 0.75s;
-  width: 200px;
 }
+
 .current-label {
   text-transform: uppercase;
   margin-bottom: 1rem;
-  font-size: 20px;
+  font-size: 1.7rem;
   color: #ddd;
 }
 
 .current-score {
-  font-size: 30px;
+  font-size: 3.5rem;
 }
 
-.btn-box {
+/* ABSOLUTE POSITIONED ELEMENTS */
+.btn {
   position: absolute;
-  width: 300px;
   left: 50%;
-  height: 100%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  color: #444;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.2s;
+
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+
+  padding: 0.7rem 2.5rem;
+  border-radius: 50rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+}
+
+.btn::first-letter {
+  font-size: 2.4rem;
+  display: inline-block;
+  margin-right: 0.7rem;
+}
+
+.btn--new {
+  top: 4rem;
+}
+.btn--roll {
+  top: 39.3rem;
+}
+.btn--hold {
+  top: 46.1rem;
+}
+
+.btn:active {
+  transform: translate(-50%, 3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+  outline: none;
 }
 
 .dice {
   position: absolute;
-
-  width: 100px;
-  height: 100px;
-  margin-top: 200px;
+  left: 50%;
+  top: 16.5rem;
+  transform: translateX(-50%);
+  height: 10rem;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
 }
 
-.btn.btn--new {
-  margin-top: 40px;
-  margin-bottom: auto;
+.player--winner {
+  background-color: #2f2f2f;
 }
-.btn.btn--hold {
-  margin-bottom: 100px;
-  margin-top: 10px;
+
+.player--winner .name {
+  font-weight: 700;
+  color: #c7365f;
+}
+
+.dice.hidden {
+  display: none;
 }
