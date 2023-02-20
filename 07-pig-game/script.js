@@ -67,6 +67,9 @@ const changePlayer = function () {
   //   判断是否胜利
   if (score[activePlayer] >= 100) {
     console.log(`player ${activePlayer + 1} win`);
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.toggle('player--winner');
     message.children[0].innerHTML = activePlayer + 1;
     message.classList.add('active');
     eventLose();
@@ -129,6 +132,8 @@ const newEvent = function () {
   document.querySelector(`.player--1`).classList.remove('player--active');
   document.querySelector(`.player--0`).classList.add('player--active');
   message.classList.remove('active');
+  document.querySelector(`.player--0`).classList.remove('player--winner');
+  document.querySelector(`.player--1`).classList.remove('player--winner');
 
   // 重置 事件绑定
   btns.forEach(item => {
